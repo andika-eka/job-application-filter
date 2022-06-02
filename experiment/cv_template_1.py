@@ -31,7 +31,7 @@ class Cv_template1 (FPDF):
         self.ln(20)
     
     def add_contact(self, contacts):
-        self.set_right_margin(50)
+        self.set_right_margin(40)
         self.set_font("helvetica", "B", size=15)
         self.set_y(50)
         self.cell(0, 5, "Contact:", new_x="LMARGIN", new_y="NEXT")
@@ -53,7 +53,7 @@ class Cv_template1 (FPDF):
         self.ln(10)
         self.cell(0, 5, parent + ":", new_x="LMARGIN", new_y="NEXT")
         self.line(x1=10, y1=self.get_y(), x2=50, y2=self.get_y())
-        self.set_font("helvetica", size=12)
+        self.set_font("helvetica", size=10)
         self.ln(2)
         for child in childs:
             self.cell(2)
@@ -112,8 +112,13 @@ class Cv_template1 (FPDF):
 if __name__ == "__main__":
     from faker import Faker
     import random
-    fake = Faker('id_ID')
+    import csv
 
+    fake = Faker('id_ID')
+    csv_reader = list()
+    with open('./skillset_list.csv') as csv_file:
+            csv_reader =list( csv.reader(csv_file, delimiter=','))
+            # print(type(csv_reader))
     
     for i in range(5):
         cv = Cv_template1()
@@ -126,8 +131,31 @@ if __name__ == "__main__":
                     ['phone', fake.phone_number()],
                     ['address', fake.address()],
                     ]
-
         cv.add_contact(contacts)
+
+        list_name1, list_name2, = "General Skill", str()
+        list_content1, list_content2 = list(), list()
+
+        num_skill = random.randint(4,9)
+        list_content1 = random.sample(csv_reader[0][1:], num_skill)
+        cv.add_list(list_name1, list_content1)
+
+        spc_skil = random.choice(csv_reader[1:])
+        spc_skil = [i for i in spc_skil if not i == '']
+        num_skill = random.randint(4,9)
+        list_name2 = spc_skil[0]
+        list_content2 = random.sample(spc_skil[1:], num_skill)
+        cv.add_list(list_name2, list_content2)
+
+        # print(list_name1, " :")
+        # for skill in list_content1:
+        #     print("  ",skill)
+        # print(list_name2, " :")
+        # for skill in list_content2:
+        #     print("  ",skill)
+
+
+
         
-        cv.output(f"./classGenerated{i}.pdf")
+        cv.output(f"./pdf/classGenerated{i}.pdf")
 
