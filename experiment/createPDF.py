@@ -16,12 +16,12 @@ pdf.set_draw_color(r=0, g=0, b=0)
 pdf.set_line_width(1.5)
 pdf.set_font("helvetica", "B", 20)
 pdf.cell(50)
-pdf.line(x1=55, y1=30, x2=200, y2=30)
 pdf.cell(0, 0, "Putu andika Eka putra", border=0,)
 pdf.set_font("helvetica", size =15)
 pdf.ln(10)
 pdf.cell(50)
 pdf.cell(0, 0, "software engineer", border=0,)
+pdf.line(x1=55, y1=30, x2=200, y2=30)
 pdf.ln(20)
 
 #contact
@@ -60,8 +60,6 @@ for i in range(1,4):
     pdf.cell(2)
     pdf.cell(0, 5, f"Printing line number {i}", new_x="LMARGIN", new_y="NEXT")
 
-
-
 pdf.set_font("helvetica", "B", size=12)
 pdf.ln(10)
 pdf.cell(0, 5, "List 3 :", new_x="LMARGIN", new_y="NEXT")
@@ -72,9 +70,11 @@ for i in range(1,5):
     pdf.cell(2)
     pdf.cell(0, 5, f"Printing line number {i}", new_x="LMARGIN", new_y="NEXT")
 
+# second column
 pdf.set_y(40)
 pdf.set_left_margin(60)
 
+# Summary
 pdf.set_font("helvetica", "B", size=15)
 pdf.cell(10, 10, "Summary: ", new_x="LMARGIN", new_y="NEXT")
 pdf.line(x1=60, y1=pdf.get_y(), x2=200, y2=pdf.get_y())
@@ -83,6 +83,7 @@ pdf.set_font("helvetica", size=12)
 pdf.write( txt = lorem[:200])
 pdf.ln(10)
 
+# Education
 pdf.set_font("helvetica", "B", size=15)
 pdf.cell(10, 10, "Education: ", new_x="LMARGIN", new_y="NEXT")
 pdf.line(x1=60, y1=pdf.get_y(), x2=200, y2=pdf.get_y())
@@ -94,6 +95,7 @@ for i in range(1,3):
     pdf.ln(5)
 pdf.ln(5)
 
+# Experience
 pdf.set_left_margin(60)
 pdf.set_font("helvetica", "B", size=15)
 pdf.cell(10, 10, "Experience: ", new_x="LMARGIN", new_y="NEXT")
@@ -106,13 +108,24 @@ for i in range(1,7):
     pdf.ln(8)
 pdf.ln(5)
 
+# text 1
 pdf.set_left_margin(60)
 pdf.set_font("helvetica", "B", size=15)
-pdf.cell(10, 10, "Text: ", new_x="LMARGIN", new_y="NEXT")
+pdf.cell(10, 10, "Text 1: ", new_x="LMARGIN", new_y="NEXT")
 pdf.line(x1=60, y1=pdf.get_y(), x2=200, y2=pdf.get_y())
 pdf.ln(3)
 pdf.set_font("helvetica", size=12)
 pdf.write( txt = lorem[:200])
 pdf.ln(10)
 
-pdf.output("generated.pdf")
+# text 2
+pdf.set_left_margin(60)
+pdf.set_font("helvetica", "B", size=15)
+pdf.cell(10, 10, "Text 2: ", new_x="LMARGIN", new_y="NEXT")
+pdf.line(x1=60, y1=pdf.get_y(), x2=200, y2=pdf.get_y())
+pdf.ln(3)
+pdf.set_font("helvetica", size=12)
+pdf.write( txt = lorem[:200])
+pdf.ln(10)
+
+pdf.output("./generated.pdf")
