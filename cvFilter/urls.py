@@ -21,7 +21,8 @@ from applicant import views as dashboard
 
 urlpatterns = [
     path('', mainV.landing_page),
-    path('apply/',mainV.apply),
+    # path('apply/',mainV.apply),
+    path('apply/',dashboard.apply),
     path('dashboard/',dashboard.dashboard),
     path('list/',dashboard.index),
     path('admin/', admin.site.urls),

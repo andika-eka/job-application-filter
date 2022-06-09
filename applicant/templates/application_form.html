@@ -47,41 +47,42 @@
                     <h3 class="card-title">Input Data Job Application</h3>
                 </div>
 
-                <form action="#" method="post">
+                {% comment %} <form action="#" method="post"> {% endcomment %}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-body">
 
-                    <div class="card-body">
-
-                        <div class="form-group">
-                            <label>Nama Pelamar</label>
-                            <input type="text" class="form-control" placeholder="Masukan Nama Pelamar">
-                        </div>
-                        <div class="form-group">
-                            <label>Nomor HP</label>
-                            <input type="text" class="form-control" placeholder="Masukan Nomor HP Pelamar">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" placeholder="Masukan Email Pelamar">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
-                                </div>
+                            {% comment %} <div class="form-group">
+                                <label>Nama Pelamar</label>
+                                <input type="text" class="form-control" placeholder="Masukan Nama Pelamar">
                             </div>
+                            <div class="form-group">
+                                <label>Nomor HP</label>
+                                <input type="text" class="form-control" placeholder="Masukan Nomor HP Pelamar">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" placeholder="Masukan Email Pelamar">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="">Upload</span>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                            {{ form.as_p }}
                         </div>
 
-                    </div>
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success"><i class="far fa-save"></i> Simpan</button>
-                    </div>
-                </form>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success"><i class="far fa-save"></i> Simpan</button>
+                        </div>
+                    </form>
             </div>
     </div>
 </section>
