@@ -19,5 +19,6 @@ from pages import views as mainV
 
 urlpatterns = [
     path('', mainV.landing_page),
+    path('apply/',mainV.apply),
     path('admin/', admin.site.urls),
 ]

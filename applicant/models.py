@@ -5,6 +5,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Applicant(models.Model):
     name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=20)
+    
     email = models.EmailField(max_length=254)
     # upload = models.FileField(upload_to='uploads/')
     class Meta:
