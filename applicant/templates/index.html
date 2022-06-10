@@ -47,6 +47,7 @@
                                     <th>Nomor HP</th>
                                     <th>Email</th>
                                     <th>File</th>
+                                    <th>date</th>
                                     {% comment %} <th>Action</th> {% endcomment %}
                                 </tr>
                             </thead>
@@ -57,7 +58,8 @@
                                     <td>{{applicant.name}}</td>
                                     <td>{{applicant.phone}}</td>
                                     <td>{{applicant.email}}</td>
-                                    <td></td>
+                                    <td>{{applicant.document}}</td>
+                                    <td>{{applicant.uploaded_at}}</td>
                                     {% comment %} <td>
                                         <a href="edit.html"><i class="fas fa-edit"
                                                 style="color: gold;"></i></a> |
