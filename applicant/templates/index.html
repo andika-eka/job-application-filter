@@ -81,15 +81,9 @@
                                                     </h3>
                                                     <div class="mb-1 text-muted">{{applicant.phone}}</div>
                                                     <div class="mb-1 text-muted">{{applicant.email}}</div>
-                                                    <a href="#">open document</a>
+                                                    <a href="../media/{{applicant.document}}">open document</a>
                                                 </div>
-                                                <img class="card-img-right flex-auto d-none d-md-block"
-                                                    data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
-                                                    style="width: 200px; height: 250px;"
-                                                    src="https://source.unsplash.com/random"
-                                                    data-holder-rendered="true">
-                                            </div>
-                                        </div>
+                                                <embed src="../media/{{applicant.document}}" type="application/pdf" height="700px" width="500">
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
