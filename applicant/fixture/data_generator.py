@@ -1,5 +1,11 @@
+import json
+from faker import Faker
+import random
+import csv
+import datetime
 from random import randint
 from fpdf import FPDF
+import sys
 
 class Cv_template1 (FPDF):
 
@@ -112,86 +118,105 @@ class Cv_template1 (FPDF):
         self.set_left_margin(70)
 
 
-if __name__ == "__main__":
-    from faker import Faker
-    import random
-    import csv
-    import datetime
 
-    fake = Faker('id_ID')
-    fake_eng = Faker()
-    csv_reader = list()
-    with open('./skillset_list.csv') as csv_file:
-            csv_reader =list( csv.reader(csv_file, delimiter=','))
-            # print(type(csv_reader))
-    
-    for i in range(5):
-        cv = Cv_template1()
+# Data to be written
+out_json = list()
+n = int(sys.argv[1])
+fake = Faker('id_ID')
+fake_eng = Faker()
+csv_reader = list()
+with open('./skillset_list.csv') as csv_file:
+        csv_reader =list( csv.reader(csv_file, delimiter=','))
+for i in range(n):
+    name = fake.name()
+    email =  name.replace(' ', '.')[:10]+str(random.randint(0,1000))+"@"+fake.free_email_domain()
+    phone =  fake.phone_number()
+    docname = "documents/fakedoc"+ name.replace(' ', '.')[:10]+".pdf"
+    dictionary ={
+        "model": "applicant.Applicant",
+        "fields": {
+            "name": name,
+            "phone": phone,
+            "email": email,
+            "document": docname,
+            "uploaded_at": str(datetime.datetime.now()),
 
-        # year = random.randint(1980, 2006)
-        name = fake.name()
-        cv.add_picture("https://source.unsplash.com/random")
-        cv.add_name_title(name,fake.bs())
+        }
+    }
+    out_json.append(dictionary)
 
-        contacts = [['email',  name.replace(' ', '.')[:10]+str(random.randint(0,1000))+"@"+fake.free_email_domain()], 
-                    ['phone', fake.phone_number()],
-                    ['address', fake.address()],
-                    ]
-        cv.add_contact(contacts)
+    cv = Cv_template1()
+    cv.add_picture("https://source.unsplash.com/random")
+    cv.add_name_title(name,fake.bs())
 
-        list_name1, list_name2, = "General Skill", str()
-        list_content1, list_content2 = list(), list()
+    contacts = [['email', email], 
+                ['phone', phone],
+                ['address', fake.address()],
+                ]
+    cv.add_contact(contacts)
 
-        num_skill = random.randint(4,9)
-        list_content1 = random.sample(csv_reader[0][1:], num_skill)
-        cv.add_list(list_name1, list_content1)
+    list_name1, list_name2, = "General Skill", str()
+    list_content1, list_content2 = list(), list()
 
-        spc_skil = random.choice(csv_reader[1:])
-        spc_skil = [i for i in spc_skil if not i == '']
-        num_skill = random.randint(4,8)
-        list_name2 = spc_skil[0]
-        list_content2 = random.sample(spc_skil[1:], num_skill)
-        cv.add_list(list_name2, list_content2)
+    num_skill = random.randint(4,9)
+    list_content1 = random.sample(csv_reader[0][1:], num_skill)
+    cv.add_list(list_name1, list_content1)
 
-        cv.second_column()
+    spc_skil = random.choice(csv_reader[1:])
+    spc_skil = [i for i in spc_skil if not i == '']
+    num_skill = random.randint(4,8)
+    list_name2 = spc_skil[0]
+    list_content2 = random.sample(spc_skil[1:], num_skill)
+    cv.add_list(list_name2, list_content2)
 
-        paragraphs = fake_eng.paragraph(nb_sentences=5)
-        par_string = str()
-        for x in paragraphs: par_string += x
-        cv.add_summary(par_string)
+    cv.second_column()
 
-        cv.add_paragraph("motto",  fake.catch_phrase())
+    paragraphs = fake_eng.paragraph(nb_sentences=5)
+    par_string = str()
+    for x in paragraphs: par_string += x
+    cv.add_summary(par_string)
 
-        educations = list()
-        now =datetime.datetime.now().year
-        year =now - random.randint(10, 20)
-        for j in range(0, random.randint(1,3)):
-            school = "university of "+ fake.city()+' ('+str(year)+'-'
-            year += random.randint(2,5)
-            school +=str(year)+')'
-            if year >= now -3 :
-                break
-            educations.append(school)
-        cv.add_education(educations)
+    cv.add_paragraph("motto",  fake.catch_phrase())
 
-        experiences = list()
-        year += random.randint(-3,3)
-        for j in range(0, random.randint(1, 5)):
-            experience = fake.job() + " ," + fake.company() +' ('+str(year)+'-'
-            year += random.randint(2,5)
-            if year >= now  :
-                experience +=str(now)+')'
-                experiences.append(experience)
-                break
-            experience +=str(year)+')'
+    educations = list()
+    now =datetime.datetime.now().year
+    year =now - random.randint(10, 20)
+    for j in range(0, random.randint(1,3)):
+        school = "university of "+ fake.city()+' ('+str(year)+'-'
+        year += random.randint(2,5)
+        school +=str(year)+')'
+        if year >= now -3 :
+            break
+        educations.append(school)
+    cv.add_education(educations)
+
+    experiences = list()
+    year += random.randint(-3,3)
+    for j in range(0, random.randint(1, 5)):
+        experience = fake.job() + " ," + fake.company() +' ('+str(year)+'-'
+        year += random.randint(2,5)
+        if year >= now  :
+            experience +=str(now)+')'
             experiences.append(experience)
-        cv.add_experience(experiences)
+            break
+        experience +=str(year)+')'
+        experiences.append(experience)
+    cv.add_experience(experiences)
 
 
 
 
 
-        print(i)
-        
-        cv.output(f"./pdf/classGenerated{i}.pdf")
+    print(i)
+    
+    cv.output("../../media/"+docname)
 
+
+
+
+# Serializing json 
+json_object = json.dumps(out_json, indent = 4)
+# Writing to sample.json
+
+with open("applicants.json", "w") as outfile:
+    outfile.write(json_object)
