@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'applicant',
     'docfile',
     'haystack',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
