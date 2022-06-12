@@ -1,0 +1,76 @@
+{% extends "template.html" %} {% load static %} {% block content %}
+
+<!-- Masthead-->
+<header
+  class="masthead"
+  style="background-image: url('{% static 'assets/img/4565.jpg' %}')"
+>
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-6">
+        <div class="text-center text-white">
+          <!-- Page heading-->
+          <h2 class="mb-12">SISTEM INFORMASI JOB APPLIACATION</h2>
+          <p>
+            SIJA (Sistem Informasi Job Application) Merupakan Sistem yang
+            Memudahkan HRD dalam Mencari Pelamar Pekerjaan sesuai dengan
+            Kebuyuhan Perusahaan dengan Mudah dan Cepat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Icons Grid-->
+<section class="features-icons bg-light text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="bi-window m-auto text-primary"></i>
+          </div>
+          <h3>Mudah</h3>
+          <p class="lead mb-0">Sistem mudah digunkan oleh pengguna</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="bi-layers m-auto text-primary"></i>
+          </div>
+          <h3>Aman</h3>
+          <p class="lead mb-0">Keamanan Data Pengguna Terjaga</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="bi-terminal m-auto text-primary"></i>
+          </div>
+          <h3>Cepat</h3>
+          <p class="lead mb-0">
+            Terdapat Fitur Pencarian Job Application sehingga Proses yang
+            diperlukan HRD Cepat
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Call to Action-->
+<section
+  class="call-to-action text-white text-center"
+  id="signup"
+  style="background-image: url('{% static 'assets/img/desain.jpg' %}')"
+>
+  <div class="container position-relative">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <h2 class="mb-4">DAFTARKAN LAMARAN ANDA SEKARANG JUGA!</h2>
+        <a class="btn btn-primary" href="./apply">Apply</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bbootstrap 4 -->
+<link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+
+<section>
+    <div class="container">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Job Application</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Job Application</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        <section class="content">
+
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Input Data Job Application</h3>
+                </div>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        {{ form.source.errors }}
+                        {{ form.source }}
+                        
+                        {% load widget_tweaks %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Nama Pelamar</label>
+                                {% render_field form.name class="form-control" placeholder="Masukan Nama Pelamar" type="text" %}
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor HP</label>
+                                {% render_field form.phone class="form-control" placeholder="Masukan Nomor HP Pelamar" type="text" %}
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                {% render_field form.email class="form-control" placeholder="Masukan Email Pelamar" type="text" %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputFile">File input</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        {% render_field form.document class="" id="exampleInputFile" type="file" %}
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success"><i class="far fa-save"></i> Simpan</button>
+                        </div>
+                    </form>
+            </div>
+    </div>
+</section>
+<!-- /.content-wrapper -->
+{% endblock %}
+
+{% block script %}
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static 'plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+<!-- Summernote -->
+<!-- overlayScrollbars -->
+<script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.js' %}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'dist/js/demo.js' %}"></script>
+
+<script type="text/javascript">
+    document.getElementById("judul").innerHTML = "Sistem Informasi Job Application";
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+{% endblock %}

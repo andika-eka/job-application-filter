@@ -11,9 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT_PATH = os.path.dirname(__file__)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +28,11 @@ SECRET_KEY = 'django-insecure-fgqs6&nz7wfk1vk=*qd$n@-zk#wgtyw(ur^4-1v=wmi2i@w#_d
 DEBUG = True
 
 ALLOWED_HOSTS = []
+'''
+DEBUG = False
 
+ALLOWED_HOSTS = ['*']
+'''
 
 # Application definition
 
@@ -37,6 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pages',
+    'applicant',
+    'docfile',
+    'haystack',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media', # for file upload
             ],
         },
     },
@@ -125,3 +137,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [os.path.join(ROOT_PATH, 'static')]
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog',
+    },
+}
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
