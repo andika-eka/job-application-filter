@@ -46,7 +46,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="dist/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src='{% static "dist/img/logo.png"%}' alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">SIJA</span>
             </a>
 
@@ -55,10 +55,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="dist/img/User.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src='{% static "dist/img/User.jpg"%}' class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">USER</a>
+                        <a href="#" class="d-block">Admin</a>
                     </div>
                 </div>
 
@@ -134,6 +134,26 @@
     <script type="text/javascript">
         document.getElementById("judul").innerHTML = "Sistem Informasi Job Application";
     </script>
+    <script>
+        $(function () {
+            //-------------
+    //- LINE CHART -
+    //--------------
+    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+    var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
+    var lineChartData = jQuery.extend(true, {}, areaChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartData.datasets[1].fill = false;
+    lineChartOptions.datasetFill = false
+
+    var lineChart = new Chart(lineChartCanvas, { 
+      type: 'line',
+      data: lineChartData, 
+      options: lineChartOptions
+    })
+})
+</script>
+
     {% block script %}
 
     {% endblock %}
