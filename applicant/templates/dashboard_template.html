@@ -23,6 +23,23 @@
     <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style> 
+        input[type=text] {
+            width: 300px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+            background-color: white;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        input[type=text]:focus {
+            width: 300%;
+        }
+        </style>
     {% block link %} 
     {% endblock %}
 </head>
@@ -39,6 +56,9 @@
                 </li>
 
             </ul>
+            <form>
+                <input type="text" name="search" placeholder="Search..">
+            </form>
         </nav>
         <!-- /.navbar -->
 
@@ -151,6 +171,7 @@
       data: lineChartData, 
       options: lineChartOptions
     })
+    
 })
 </script>
 
