@@ -36,7 +36,4 @@ def apply(request):
         'form': form})
 
 
-def detail_view(request, id):
-    context = {}
-    context["applicants"] = Applicant.objects.get(id=id)
-    return render(request, "index.html", context)
+

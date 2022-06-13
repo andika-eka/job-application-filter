@@ -1,6 +1,9 @@
-# Job Application filter
+<h1 align="center">
+    Job Application filter
+</h1>
 
-**requrement:**  
+
+ **Requirement**:
 1. python:  
     web:  
     * django : https://www.djangoproject.com/  
@@ -26,8 +29,10 @@
 2. mysql
 
 3. apache solr
+***
+<br/>   
 
-**How to clone:**
+**How to clone:**  
 1. Prepare the above requrements
 2. Clone this repository
 3. activate mysql and create new database
@@ -36,7 +41,7 @@
 
    CREATE DATABASE databasename
    ```
-4. put database in *cvFilter/settings.py*
+1. put database in *cvFilter/settings.py*
    ```python
    DATABASES = {
     'default': {  
@@ -49,22 +54,45 @@
         }
     }
     ```
-5. create secret key from https://djecrety.ir/ and put in in cvFilter/settings.py
+2. create secret key from https://djecrety.ir/ and put in in cvFilter/settings.py
     ``` python 
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'django-insecure-fgqs6&nz7wfk1vk=*qd$n@-zk#wgtyw(ur^4-1v=wmi2i@w#_d'
     ```
 
-6. Make your migrations
+1. Make your migrations
     ``` 
     python manage.py makemigrations
     python manage.py migrate
     ```
-7. Create a new superuser
+2. Create a new superuser
     ``` 
     python manage.py createsuperuser
     ```
-8. let the show begin
+1. let the show begin
     ``` 
     python manage.py runserver
     ```
+
+    ***
+
+<br/>  
+
+**How to generate fake data (for testing):**  
+1. Delete all applicants data.  
+    go  to  project root directory and run the following command 
+    ```
+    python manage.py migrate applicant zero
+    python manage.py migrate applicant 
+    ```
+2. Delete all pdf file in ./media/documents/
+3. go to applicant/fixture/ run the following command  
+    ``` 
+    python data_generator.py numberOfInstances
+    ```
+4. go  to  project root directory and run the following command 
+    ```
+    python manage.py loaddata applicant/fixture/applicants.json
+    ```
+5. Examine
+ 
