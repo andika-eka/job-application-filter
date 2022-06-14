@@ -11,6 +11,9 @@
 
     * mysql client : https://pypi.org/project/mysqlclient/   
         ```pip install mysqlclient```
+
+    * django widget_tweaks :https://pypi.org/project/django-widget-tweaks/
+        ```pip install django-widget-tweaks```
     
     solr:  
     * pysolr : https://pypi.org/project/pysolr/  
