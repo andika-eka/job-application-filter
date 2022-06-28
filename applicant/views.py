@@ -19,7 +19,7 @@ def get_txt(path):
 @user_passes_test(lambda u: u.is_superuser)
 def indexing(request):
     applicants = Applicant.objects.all()
-
+    # print("test:")
     data = { 'message': "data indexed" }
     return JsonResponse(data)
 

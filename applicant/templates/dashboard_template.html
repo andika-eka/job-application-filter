@@ -88,9 +88,10 @@
 
                         </li>
                         <li class="nav-item">
-                            <p>
-                                <input type='button' value='index' onclick='runIndexing()'>
-                            </p>
+                            <a target="_blank" class="btn btn-info pull-right"
+                                href="/indexing">
+                                index
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -161,15 +162,7 @@
             })
         })
     </script>
-    <script>
-        function runIndexing() {
-            $.ajax({
-                url: '/indexing', 
-                success: function (data) {
-                }
 
-            });
-    </script>
 
 
     {% block script %}
