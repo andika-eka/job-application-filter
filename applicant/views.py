@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import JsonResponse
+from django.http import HttpResponse
 from .models import Applicant
 from .forms import ApplicantForm
 from django.contrib.auth.decorators import user_passes_test
 import pdfplumber
+import pysolr 
 
 # Create your views here.
 
@@ -19,9 +20,20 @@ def get_txt(path):
 @user_passes_test(lambda u: u.is_superuser)
 def indexing(request):
     applicants = Applicant.objects.all()
+    solr = pysolr.Solr("http://localhost:8983/solr/cv_filter/")
+    solr.delete("q=*.*")
+    solr.commit()
+    for applicant in applicants:
+        json = {
+            'id' : applicant.id,
+            'email' : applicant.email,
+            'cv_text' : get_txt('./media/'+ str(applicant.document))
+        }
+        solr.add(json)
+        solr.commit()
+
     # print("test:")
-    data = { 'message': "data indexed" }
-    return JsonResponse(data)
+    return HttpResponse("OK")
 
 
 
