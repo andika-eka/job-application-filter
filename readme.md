@@ -19,8 +19,6 @@
     * pysolr : https://pypi.org/project/pysolr/  
     ``` pip install pysolr```
 
-    * django-haystack  : https://pypi.org/project/django-haystack/  
-    ``` pip install django-haystack```
     
     PDF:
     * FPDF : https://pypi.org/project/fpdf2/  
