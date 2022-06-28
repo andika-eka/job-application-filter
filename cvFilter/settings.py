@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'pages',
     'applicant',
     'docfile',
-    'haystack',
+    # 'haystack',
     'widget_tweaks',
 ]
 
@@ -141,12 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [os.path.join(ROOT_PATH, 'static')]
 
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr/blog',
-    },
-}
 
 
 MEDIA_URL = '/media/'
