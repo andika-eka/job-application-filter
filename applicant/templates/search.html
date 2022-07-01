@@ -1,0 +1,92 @@
+{% extends "dashboard_template.html" %}
+{% load static %}
+{% block content %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Search</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Search</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">search for "{{query}} "</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Pelamar</th>
+                            <th>Nomor HP</th>
+                            <th>Email</th>
+                            <th>date</th>
+                            <th>File</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for applicant in applicants %}
+                        <tr>
+                            <td>{{ applicant.id }}</td>
+                            <td>{{applicant.name}}</td>
+                            <td>{{applicant.phone}}</td>
+                            <td>{{applicant.email}}</td>
+                            <td>{{applicant.uploaded_at}}</td>
+                            <td><a href="#" data-toggle="modal" data-target="#modal-default{{ forloop.counter }}"><i
+                                        class="fas fa-info-circle" style="color: blue;"></i> {{applicant.document}}</a>
+                            </td>
+                            <div class="modal fade" id="modal-default{{ forloop.counter }}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Detail</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card box-shadow ">
+                                                <div class="card-body d-flex flex-column align-items-start">
+                                                    <strong class="d-inline-block mb-2 text-primary">{{applicant.uploaded_at}}</strong>
+                                                    <h3 class="mb-0">
+                                                        <a class="text-dark" href="#">{{applicant.name}}</a>
+                                                    </h3>
+                                                    <div class="mb-1 text-muted">{{applicant.phone}}</div>
+                                                    <div class="mb-1 text-muted">{{applicant.email}}</div>
+                                                    <a href="../media/{{applicant.document}}">open document</a>
+                                                </div>
+                                                <embed src="../media/{{applicant.document}}" type="application/pdf" height="700px" width="500">
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+</div>
+
+
+    </section>
+    <!-- /.content-wrapper -->
+    {% endblock %}
