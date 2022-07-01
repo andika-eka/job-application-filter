@@ -58,6 +58,7 @@ def search(request):
 
         results = solr.search(solr_query, **{
             'rows': 500,
+            'sort': "score desc"
         })
         ids = [result['id'] for result in results]
     
@@ -66,6 +67,7 @@ def search(request):
     applicants = Applicant.objects.filter(id__in=ids).order_by(preserved)
     context = {}
     context["search_form"] = ApplicantForm()
+    context["num"] = len(applicants)
     context["query"] = query
     context["applicants"] = applicants
     return render(request, "search.html", context)
