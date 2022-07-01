@@ -29,6 +29,7 @@ urlpatterns = [
     path('dashboard/',dashboard.dashboard),
     path('list/',dashboard.index),
     path('admin/', admin.site.urls),
-    path('indexing', dashboard.indexing, name='indexing')
+    path('indexing', dashboard.indexing, name='indexing'),
+    path('search', dashboard.search)
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
